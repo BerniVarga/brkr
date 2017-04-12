@@ -5,8 +5,7 @@ Barker is built using Spring framework's Spring MVC module. The application embe
 
 ### Usage:
 1. Build using maven
-  * `mvn clean package`
-1. Run using 
-  * `maven exec plugin: exec:java -Dexec.mainClass=brkr.webserver.EmbeddedJetty`
-  or
-  * `java -jar brkr-1.0-SNAPSHOT-jar-with-dependencies.jar`
+    * `mvn clean package`
+1. Run using maven exec plugin or java
+    * `mvn exec:java -Dexec.mainClass=brkr.webserver.EmbeddedJetty`
+    * `java -jar brkr-1.0-SNAPSHOT-jar-with-dependencies.jar`
