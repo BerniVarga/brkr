@@ -4,7 +4,6 @@ import brkr.springconfig.AppConfig;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
-import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
@@ -21,22 +20,21 @@ public class EmbeddedJetty {
     private void startJetty(int port) throws Exception {
         Server server = new Server(port);
         WebApplicationContext webApplicationContext = createWebApplicationContext();
-        ServletContextHandler handler = createHandlerUsing(webApplicationContext);
+        ServletContextHandler handler = createHandlerWith(webApplicationContext);
         server.setHandler(handler);
         server.start();
         server.join();
     }
 
-    private ServletContextHandler createHandlerUsing(WebApplicationContext webApplicationContext){
+    private ServletContextHandler createHandlerWith(WebApplicationContext webApplicationContext) {
         ServletContextHandler servletContextHandler = new ServletContextHandler();
         servletContextHandler.setContextPath(CONTEXT_PATH_RESPOND_TO_ALL_REQUESTS);
         ServletHolder dispatcherServletHolder = new ServletHolder(new DispatcherServlet(webApplicationContext));
-        servletContextHandler.addServlet(dispatcherServletHolder,CONTEXT_PATH_RESPOND_TO_ALL_REQUESTS);
-        servletContextHandler.addEventListener(new ContextLoaderListener(webApplicationContext));
+        servletContextHandler.addServlet(dispatcherServletHolder, CONTEXT_PATH_RESPOND_TO_ALL_REQUESTS);
         return servletContextHandler;
     }
 
-    private WebApplicationContext createWebApplicationContext(){
+    private WebApplicationContext createWebApplicationContext() {
         AnnotationConfigWebApplicationContext applicationContext = new AnnotationConfigWebApplicationContext();
         applicationContext.register(AppConfig.class);
         return applicationContext;

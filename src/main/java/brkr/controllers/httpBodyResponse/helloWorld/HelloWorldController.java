@@ -1,4 +1,4 @@
-package brkr.controllers;
+package brkr.controllers.httpBodyResponse.helloWorld;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,6 +11,6 @@ public class HelloWorldController {
     @RequestMapping(value = "/hello", method = RequestMethod.GET)
     @ResponseBody
     public String sayHello() {
-        return "Hola Mundo!";
+        return "Hello world!";
     }
 }

@@ -13,6 +13,7 @@
     <properties>
         <spring.version>4.3.7.RELEASE</spring.version>
         <jetty.version>9.4.3.v20170317</jetty.version>
+        <jackson.version>2.9.0.pr3</jackson.version>
     </properties>
 
 
@@ -44,6 +45,20 @@
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-servlet</artifactId>
             <version>${jetty.version}</version>
+        </dependency>
+
+        <!-- Jackson - read and write JSON, used by Spring's HttpMessageConverter -->
+        <!-- automatically registered by @EnableWebMvc, because it is on the classpath -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-xml</artifactId>
+            <version>${jackson.version}</version>
         </dependency>
 
     </dependencies>
